@@ -9,8 +9,8 @@ jobs:
           POSTGRES_DB: larasns
           POSTGRES_USER: default
           POSTGRES_PASSWORD: secret
-      #==========ここまで追加==========
-    #==========ここから追加==========
+          #==========ここまで追加==========
+          #==========ここから追加==========
           environment:
             APP_ENV: testing
             DB_CONNECTION: pgsql
