@@ -17,9 +17,6 @@ jobs:
       DB_USERNAME: default
       DB_PASSWORD: secret
     steps:
-      # 略
-      - run: npm run dev
-      - run:
           name: get ready for postgres
           command: |
             sudo apt-get update
