@@ -32,4 +32,4 @@ jobs:
       #==========ここまで追加==========
       - run:
           name: php test
-          command: vendor/bin/phpunit
+          command: ./vendor/bin/phpunit
