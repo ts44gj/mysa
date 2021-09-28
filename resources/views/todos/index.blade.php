@@ -19,7 +19,6 @@
 <body>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <i class="fas fa-user-ninja fa-3x mr-1"></i>
             @guest
                 <li class="breadcrumb-item"><a href="{{ route('register') }}">ユーザー登録</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('login') }}">ログイン</a></li>
