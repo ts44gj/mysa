@@ -21,7 +21,6 @@ jobs:
     #==========ここまで追加==========
     steps:
       # 略
-      - run: npm run dev
       #==========ここから追加==========
       - run:
           name: get ready for postgres
