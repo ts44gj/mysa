@@ -3,6 +3,11 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-node-browsers
+       - image: circleci/postgres:11.6-alpine
+        environment:
+          POSTGRES_DB: mysa
+          POSTGRES_USER: default
+          POSTGRES_PASSWORD: secret
     steps:
       - checkout
       - run: sudo composer self-update --1
