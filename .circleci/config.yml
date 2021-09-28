@@ -8,27 +8,25 @@ jobs:
           POSTGRES_DB: mysa
           POSTGRES_USER: default
           POSTGRES_PASSWORD: secret
+      environment:
+        APP_ENV: testing
+        DB_CONNECTION: pgsql
+        DB_HOST: localhost
+        DB_PORT: 5432
+        DB_DATABASE: mysa
+        DB_USERNAME: default
+        DB_PASSWORD: secret
       #==========ここまで追加==========
-    #==========ここから追加==========
-    environment:
-      APP_ENV: testing
-      DB_CONNECTION: pgsql
-      DB_HOST: localhost
-      DB_PORT: 5432
-      DB_DATABASE: mysa
-      DB_USERNAME: default
-      DB_PASSWORD: secret
-    #==========ここまで追加==========
-    steps:
-      # 略
-      #==========ここから追加==========
-      - run:
-          name: get ready for postgres
-          command: |
-            sudo apt-get update
-            sudo apt-get install libpq-dev
-            sudo docker-php-ext-install pdo_pgsql
-            dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run:
+      steps:
+        # 略
+        #==========ここから追加==========
+        - run:
+            name: get ready for postgres
+            command: |
+              sudo apt-get update
+              sudo apt-get install libpq-dev
+              sudo docker-php-ext-install pdo_pgsql
+              dockerize -wait tcp://localhost:5432 -timeout 1m
+        - run:
           name: php test
           command: vendor/bin/phpunit
