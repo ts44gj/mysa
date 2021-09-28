@@ -11,18 +11,17 @@ jobs:
           POSTGRES_PASSWORD: secret
       #==========ここまで追加==========
     #==========ここから追加==========
-    environment:
-      APP_ENV: testing
-      DB_CONNECTION: pgsql
-      DB_HOST: localhost
-      DB_PORT: 5432
-      DB_DATABASE: larasns
-      DB_USERNAME: default
-      DB_PASSWORD: secret
+          environment:
+            APP_ENV: testing
+            DB_CONNECTION: pgsql
+            DB_HOST: localhost
+            DB_PORT: 5432
+            DB_DATABASE: larasns
+            DB_USERNAME: default
+            DB_PASSWORD: secret
     #==========ここまで追加==========
     steps:
       # 略
-      
       #==========ここから追加==========
       - run:
           name: get ready for postgres
