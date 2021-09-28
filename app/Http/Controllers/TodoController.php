@@ -14,7 +14,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Todo::orderByRaw('`deadline` IS NULL ASC')->orderBy('deadline')->get();
+        //$todos = Todo::orderByRaw('`deadline` IS NULL ASC')->orderBy('deadline')->get();
+        $todos = Todo::orderBy('deadline', 'desc')->get();
 
         return view('todos.index', ['todos' => $todos]);
 
