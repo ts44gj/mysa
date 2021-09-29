@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Buy;
 use Illuminate\Http\Request;
 
 class BuyController extends Controller
@@ -13,7 +14,11 @@ class BuyController extends Controller
      */
     public function index()
     {
-        //
+
+        $buys = Buy::orderBy('day', 'desc')->get();
+
+        return view('buys.index', ['buys' => $buys]);
+
     }
 
     /**
@@ -21,9 +26,22 @@ class BuyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $buy = new Buy;
+        $form = $request->all();
+
+//s3アップロード開始
+        $image = $request->file('image');
+// バケットの`myprefix`フォルダへアップロード
+        $path = Storage::disk('s3')->putFile('myprefix', $image, 'img');
+// アップロードした画像のフルパスを取得
+        $buy->image_path = Storage::disk('s3')->url($path);
+
+        $buy->save();
+
+        return redirect('buys.index');
+
     }
 
     /**

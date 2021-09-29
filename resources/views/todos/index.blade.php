@@ -26,7 +26,7 @@
             @auth
                 <li class="breadcrumb-item"><a href="{{ route('top') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('todos.index') }}">todo</a></li>
-                <li class="breadcrumb-item"><a href="#">buylist</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('buys.index' ) }}">buylist</a></li>
                 <li class="breadcrumb-item"><a href="#">myself</a></li>
                 <!-- Dropdown -->
                 <li class="breadcrumb-item dropdown">
