@@ -70,6 +70,7 @@
     {{ csrf_field() }}
     <input type="submit" value="アップロード">
   </form>
+  a
  {{--   @foreach ($buys as $buy)
         <tr>
             <th scope="row" class="todo">{{ $buy->buy }}</th>
