@@ -55,7 +55,7 @@
     <div class="container mt-3">
         <h1>Buyリスト</h1>
     </div>
-    <form method="POST" action="{{ route('buys.store') }}">
+    <form method="POST" enctype="multipart/form-data" action="{{ route('buys.store') }}">
         @csrf
         <div class="md-form">
             <input class="form-control col-8 mr-5" name="text" type="text">
