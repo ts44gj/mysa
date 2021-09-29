@@ -15,7 +15,10 @@ class CreateBuysTables extends Migration
     {
         Schema::create('buys', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text('text');
             //画像保存　テキスト
+            $table->string('image_path')->nullable();
+            $table->date('day');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

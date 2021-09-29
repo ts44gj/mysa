@@ -26,7 +26,7 @@
             @auth
                 <li class="breadcrumb-item"><a href="{{ route('top') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('todos.index') }}">todo</a></li>
-                <li class="breadcrumb-item"><a href="#">buylist</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('buys.index' ) }}">buylist</a></li>
                 <li class="breadcrumb-item"><a href="#">myself</a></li>
                 <!-- Dropdown -->
                 <li class="breadcrumb-item dropdown">
@@ -53,21 +53,22 @@
         </ol>
     </nav>
     <div class="container mt-3">
-        <h1>Todoリスト</h1>
+        <h1>Buyリスト</h1>
     </div>
-    <form method="POST" action="{{ route('todos.store') }}">
+    <form method="POST" action="{{ route('buys.store') }}">
         @csrf
         <div class="md-form">
-            <input class="form-control col-8 mr-5" name="todo" type="text">
-            <input class="mr-5" name="deadline" type="date">
+            <input class="form-control col-8 mr-5" name="text" type="text">
+            <input type="file" name="image">
+            <input class="mr-5" name="day" type="date">
         </div>
         <button type="submit" class="btn blue-gradient btn-block">投稿する</button>
     </form>
-    @foreach ($todos as $todo)
+    @foreach ($buys as $buy)
         <tr>
-            <th scope="row" class="todo">{{ $todo->todo }}</th>
-            <td>{{ $todo->deadline }}</td>
-            <td><a href="{{ route('todos.edit', ['todo' => $todo]) }}" class="btn btn-primary">編集</a></td>
+            <th scope="row" class="todo">{{ $buy->buy }}</th>
+            <td>{{ $buy->day }}</td>
+            <td><a href="{{ route('todos.edit', ['buy' => $buy]) }}" class="btn btn-primary">編集</a></td>
             <td>
                 <form method="POST" action="{{ route('todos.destroy', ['todo' => $todo]) }}">
                     @csrf
