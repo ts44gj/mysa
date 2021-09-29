@@ -64,6 +64,14 @@
         </div>
         <button type="submit" class="btn blue-gradient btn-block">投稿する</button>
     </form>
+    @section('content')
+  <form action="{{ route('buys.store') }}" method="post" enctype="multipart/form-data">
+    <!-- アップロードフォームの作成 -->
+    <input type="file" name="image">
+    {{ csrf_field() }}
+    <input type="submit" value="アップロード">
+  </form>
+@endsection
  {{--   @foreach ($buys as $buy)
         <tr>
             <th scope="row" class="todo">{{ $buy->buy }}</th>
