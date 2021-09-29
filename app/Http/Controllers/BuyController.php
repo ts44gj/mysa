@@ -34,7 +34,7 @@ class BuyController extends Controller
 //s3アップロード開始
         $image = $request->file('image');
 // バケットの`myprefix`フォルダへアップロード
-        $path = Storage::disk('s3')->putFile('myprefix', $image, 'img');
+        $path = Storage::disk('s3')->putFile('img', $image, 'public');
 // アップロードした画像のフルパスを取得
         $buy->image_path = Storage::disk('s3')->url($path);
 
