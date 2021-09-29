@@ -17,7 +17,7 @@ class BuyController extends Controller
 
         //$buys = Buy::orderBy('day', 'desc')->get();
 
-    return view('buys.index'/*, ['buys' => $buys]*/);
+        return view('buys.index' /*, ['buys' => $buys]*/);
 
     }
 
@@ -27,6 +27,17 @@ class BuyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
+    {
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $buy = new Buy;
         $form = $request->all();
@@ -42,17 +53,6 @@ class BuyController extends Controller
 
         return redirect('buys.index');
 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
