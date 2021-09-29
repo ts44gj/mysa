@@ -42,8 +42,8 @@ class BuyController extends Controller
         $buy = new Buy;
         $form = $request->all();
 
-        $buy->text = $request->text;
-        $buy->day = $request->day;
+       // $buy->text = $request->text;
+      //  $buy->day = $request->day;
 
 //s3アップロード開始
         $image = $request->file('image');

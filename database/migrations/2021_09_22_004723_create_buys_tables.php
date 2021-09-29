@@ -13,16 +13,13 @@ class CreateBuysTables extends Migration
      */
     public function up()
     {
-        Schema::create('buys', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->text('text');
-            //画像保存　テキスト
-            $table->string('image_path')->nullable();
-            $table->date('day');
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamps();
-        });
+        Schema::create('posts', function (Blueprint $table) {
+    $table->increments('id');
+    // 画像のパスを保存するカラムを追加
+    $table->string('image_path')->nullable();
+    $table->timestamps();
+});
+
     }
 
     /**
