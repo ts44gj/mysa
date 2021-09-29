@@ -64,7 +64,7 @@
         </div>
         <button type="submit" class="btn blue-gradient btn-block">投稿する</button>
     </form>
-    @foreach ($buys as $buy)
+ {{--   @foreach ($buys as $buy)
         <tr>
             <th scope="row" class="todo">{{ $buy->buy }}</th>
             <td>{{ $buy->day }}</td>
@@ -78,7 +78,7 @@
                 </form>
             </td>
         </tr>
-    @endforeach
+    @endforeach --}}
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
