@@ -13,7 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-    <title>todos</title>
+    <title>buys</title>
 </head>
 
 <body>
@@ -65,12 +65,17 @@
         <button type="submit" class="btn blue-gradient btn-block">投稿する</button>
     </form>
   <form action="{{ route('buys.store') }}" method="post" enctype="multipart/form-data">
+    @csrf
     <!-- アップロードフォームの作成 -->
     <input type="file" name="image">
-    {{ csrf_field() }}
     <input type="submit" value="アップロード">
   </form>
-  a
+   @foreach($buys as $buy)
+    @if ($buy->image_path)
+      <!-- 画像を表示 -->
+      <img src="{{ $buy->image_path }}">
+    @endif
+  @endforeach
  {{--   @foreach ($buys as $buy)
         <tr>
             <th scope="row" class="todo">{{ $buy->buy }}</th>

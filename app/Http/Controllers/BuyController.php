@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Buy;
 use Illuminate\Http\Request;
+use Storage;
+
 
 class BuyController extends Controller
 {
@@ -17,7 +19,11 @@ class BuyController extends Controller
 
         //$buys = Buy::orderBy('day', 'desc')->get();
 
-        return view('buys.index' /*, ['buys' => $buys]*/);
+        //return view('buys.index' /*, ['buys' => $buys]*/);
+        $buys = Buy::all();
+
+        return view('buys.index', ['buys' => $buys]);
+
 
     }
 
@@ -54,7 +60,7 @@ class BuyController extends Controller
 
         $buy->save();
 
-        return redirect('buys.index');
+        return redirect()->route('buys.index');
 
     }
 
