@@ -71,9 +71,9 @@
     <input type="submit" value="アップロード">
   </form>
    @foreach($buys as $buy)
-    @if ($buy->image_path)
+    @if ($buy->imagepath)
       <!-- 画像を表示 -->
-      <img src="{{ $buy->image_path }}">
+      <img src="{{ $buy->imagepath }}">
     @endif
   @endforeach
  {{--   @foreach ($buys as $buy)

@@ -43,7 +43,7 @@ class BuyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Buy $buy)
     {
         $buy = new Buy;
         $form = $request->all();
@@ -53,10 +53,10 @@ class BuyController extends Controller
 
 //s3アップロード開始
         $image = $request->file('image');
-// バケットの`myprefix`フォルダへアップロード
+// バケットの`img`フォルダへアップロード
         $path = Storage::disk('s3')->putFile('img', $image, 'public');
 // アップロードした画像のフルパスを取得
-        $buy->image_path = Storage::disk('s3')->url($path);
+        $buy->imagepath = Storage::disk('s3')->url($path);
 
         $buy->save();
 
