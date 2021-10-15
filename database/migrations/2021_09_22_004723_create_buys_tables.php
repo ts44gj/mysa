@@ -15,8 +15,11 @@ class CreateBuysTables extends Migration
     {
         Schema::create('buys', function (Blueprint $table) {
             $table->increments('id');
-            // 画像のパスを保存するカラムを追加
-            $table->string('imagepath')->nullable();
+            $table->string('image_file_name', 100);
+            $table->string('image_title', 100);
+            $table->date('day');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
 
