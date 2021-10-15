@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Buy;
 use Illuminate\Http\Request;
 use Storage;
+use Illuminate\Support\Facades\Validator;
+use App\Auth;
 
 
 class BuyController extends Controller
@@ -23,7 +25,6 @@ class BuyController extends Controller
         $buys = Buy::all();
 
         return view('buys.index', ['buys' => $buys]);
-
 
     }
 
@@ -45,23 +46,55 @@ class BuyController extends Controller
      */
     public function store(Request $request, Buy $buy)
     {
-        $buy = new Buy;
+       /* $buy = new Buy;
         $form = $request->all();
 
-       // $buy->text = $request->text;
-      //  $buy->day = $request->day;
-
-//s3アップロード開始
+        $buy->text = $request->text;
+        $buy->time = $request->time;
+        //s3アップロード開始
         $image = $request->file('image');
-// バケットの`img`フォルダへアップロード
+        // バケットの`img`フォルダへアップロード
         $path = Storage::disk('s3')->putFile('img', $image, 'public');
-// アップロードした画像のフルパスを取得
-        $buy->imagepath = Storage::disk('s3')->url($path);
-
+        // アップロードした画像のフルパスを取得
+        $buy->path = Storage::disk('s3')->url($path);
+        $buy->user_id = $request->user()->id;
         $buy->save();
 
-        return redirect()->route('buys.index');
+        return redirect()->route('buys.index');*/
 
+        //画像およびコメントアップロード
+
+//Validatorファサードのmakeメソッドの第１引数は、バリデーションを行うデータ。
+//第２引数はそのデータに適用するバリデーションルール
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|max:10240|mimes:jpeg,gif,png',
+            'comment' => 'required|max:191'
+        ]);
+
+//上記のバリデーションがエラーの場合、ビューにバリデーション情報を渡す
+        if ($validator->fails()){
+            return back()->withInput()->withErrors($validator);
+        }
+//s3に画像を保存。第一引数はs3のディレクトリ。第二引数は保存するファイル。
+//第三引数はファイルの公開設定。
+        $file = $request->file('file');
+        $path = Storage::disk('s3')->putFile('img', $file, 'public');
+//カラムに画像のパスとタイトルを保存
+       Buy::create([
+            'image_file_name' => $path,
+            'image_title' => $request->comment,
+            'day' => $request->day,
+            'user_id' => $request->user()->id
+        ]);
+
+       /* $buy = new Buy;
+        $buy ->image_file_name -> $path;
+        $buy->image_title = $request->comment;
+        $buy->day = $request->day;
+        $buy->user_id = $request->user()->id;
+        $buy->save();*/
+
+        return redirect('/');
     }
 
     /**
