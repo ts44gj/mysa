@@ -1,3 +1,8 @@
+@extends('layout.app')
+
+@section('title','ユーザ登録')
+
+@section('content')
 <div class="container-fluid">
             <div class=row>
                 <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
@@ -30,3 +35,5 @@
                 </div>
             </div>
         </div>
+
+@endsection

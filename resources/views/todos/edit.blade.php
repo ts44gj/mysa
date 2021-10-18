@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>aaa</title>
-</head>
-<body>
-<form method="POST" action="{{ route('todos.update',['todo' => $todo]) }}">
-    @method('PATCH')
+@extends('layout.app')
+
+@section('title', 'todo編集')
+
+@section('content')
+
+    <form method="POST" action="{{ route('todos.update', ['todo' => $todo]) }}">
+        @method('PATCH')
         @csrf
         <div class="md-form">
             <input class="form-control col-8 mr-5" name="todo" type="text">
@@ -16,6 +13,5 @@
         </div>
         <button type="submit" class="btn blue-gradient btn-block">投稿する</button>
     </form>
-</body>
-</html>
 
+@endsection
