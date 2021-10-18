@@ -14,13 +14,14 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <title>@yield('title')</title>
-    <link href="/css/layout.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
     @yield('pageCss')
 </head>
 
 <body>
-    @include('nav')
 
+    @include('nav')
+<h1>aaaa</h1>
     @yield('content')
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
