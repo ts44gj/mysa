@@ -3,5 +3,7 @@
 @section('title','トップ')
 
 @section('content')
-ここはトップページです
+<div id="aaa">
+<p>ここはトップページです</p>
+</div>
 @endsection
