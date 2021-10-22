@@ -63,14 +63,16 @@
                                             <th scope="col">期限</th>
                                         </tr>
                                     </thead>
-                                    @foreach ($todos as $todo)
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row" class="todo">{{ $todo->todo }}</th>
-                                                <th>{{ $todo->deadline }}</th>
-                                            </tr>
-                                        </tbody>
-                                    @endforeach
+                                    @auth
+                                        @foreach ($todos as $todo)
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row" class="todo">{{ $todo->todo }}</th>
+                                                    <th>{{ $todo->deadline }}</th>
+                                                </tr>
+                                            </tbody>
+                                        @endforeach
+                                    @endauth
                                 </table>
                             </div>
                         </div>
@@ -85,18 +87,20 @@
                             <table class="table table-hover">
                                 <div class="card">
                                     <tbody>
-                                        @foreach ($buys as $buy)
-                                            <tr>
-                                                <th>
-                                                    <div class="card-body p-1">
-                                                        <span class="card-title">{{ $buy->image_title }}</span>
-                                                    </div>
-                                                    <div class="card-body p-1">
-                                                        <span class="card-title">{{ $buy->day }}</span>
-                                                    </div>
-                                                </th>
-                                            </tr>
-                                        @endforeach
+                                        @auth
+                                            @foreach ($buys as $buy)
+                                                <tr>
+                                                    <th>
+                                                        <div class="card-body p-1">
+                                                            <span class="card-title">{{ $buy->image_title }}</span>
+                                                        </div>
+                                                        <div class="card-body p-1">
+                                                            <span class="card-title">{{ $buy->day }}</span>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            @endforeach
+                                        @endauth
                                     </tbody>
                                 </div>
                             </table>
