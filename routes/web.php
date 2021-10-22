@@ -15,7 +15,7 @@
     return view('top');
 })->name('top');*/
 
-Route::get('/','TopController@index')->name('top');
+Route::get('/','TopController@show')->name('top');
 Route::get('/side', function () {
     return view('sidebar');
 })->name('side');

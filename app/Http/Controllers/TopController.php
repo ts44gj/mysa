@@ -9,7 +9,7 @@ use App\Buy;
 
 class TopController extends Controller
 {
-     public function index(Todo $todos, Buy $buys)
+     public function show(Todo $todos, Buy $buys)
     {$todos = Todo::orderBy('deadline', 'desc')->get();
         $buys = Buy::all();
 
