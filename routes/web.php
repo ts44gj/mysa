@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('top');
-})->name('top');
+})->name('top');*/
+
+Route::get('/','TopController@show')->name('top');
 Route::get('/side', function () {
     return view('sidebar');
 })->name('side');
@@ -21,12 +23,5 @@ Route::get('/side', function () {
 Auth::routes();
 Route::resource('todos','TodoController');
 Route::resource('buys','BuyController');
-//下記を追記
-//画像ファイルをアップロードするボタンを設置するページへのルーティング
-Route::get('/upload/image', 'ImageController@input');
-//画像ファイルをアップロードする処理のルーティング
-Route::post('/upload/image', 'ImageController@upload');
-//アップロードした画像ファイルを表示するページのルーティング
-Route::get('/output/image', 'ImageController@output');
-//上記までを追記
+
 
