@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="container todotable">
-        <table class="table table-bordered table table-hover table-sm ">
+        <table class="table table-bordered table table-hover table-sm">
             <caption>List of todos</caption>
             <thead>
                 <tr>
