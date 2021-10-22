@@ -14,6 +14,10 @@
 Route::get('/', function () {
     return view('top');
 })->name('top');
+Route::get('/side', function () {
+    return view('sidebar');
+})->name('side');
+
 Auth::routes();
 Route::resource('todos','TodoController');
 Route::resource('buys','BuyController');
