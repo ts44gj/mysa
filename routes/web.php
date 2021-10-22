@@ -11,11 +11,11 @@
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('top');
-})->name('top');*/
+})->name('top');
 
-Route::get('/','TopController@index')->name('top');
+Route::get('/usertop','TopController@index')->name('userTop');
 Route::get('/side', function () {
     return view('sidebar');
 })->name('side');
