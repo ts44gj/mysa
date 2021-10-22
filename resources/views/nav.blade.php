@@ -1,6 +1,11 @@
 <div id="page-content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-        <a class="navbar-brand" href="{{ route('top') }}">mysa</a>
+        @guest
+            <a class="navbar-brand" href="{{ route('top') }}">mysa</a>
+        @endguest
+        @auth
+            <a class="navbar-brand" href="{{ route('userTop') }}">mysa</a>
+        @endauth
         <div class="">
             <ul class="navbar-nav">
                 @guest
@@ -9,7 +14,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('top') }}">Home</a></li>
                 @endguest
                 @auth
-                    <li class="nav-item active"><a class="nav-link" href="{{ route('top') }}">Home</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{{ route('userTop') }}">Home</a></li>
                     <li class="nav-item "><a class="nav-link" href="{{ route('todos.index') }}">todo</a></li>
                     <li class="nav-item "><a class="nav-link" href="{{ route('buys.index') }}">buylist</a></li>
                     <li class="nav-item "><a class="nav-link" href="#">myself</a></li>
