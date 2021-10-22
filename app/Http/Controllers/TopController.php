@@ -14,6 +14,6 @@ class TopController extends Controller
         $buys = Buy::all();
 
 
-       return view('top',['todos'=>$todos,'buys'=>$buys]);
+       return view('userTop',['todos'=>$todos,'buys'=>$buys]);
     }
 }
