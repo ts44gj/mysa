@@ -43,11 +43,11 @@
         <div class="card">
             @foreach ($buys as $buy)
                 <div class="card-header text-center">
-                    <img src={{ Storage::disk('s3')->url("/{$buy->image_file_name}") }} alt="" width=250px
-                        height=250px></a>
+                    <span class="card-title">{{ $buy->image_title }}</span>
                 </div>
                 <div class="card-body p-1">
-                    <span class="card-title">{{ $buy->image_title }}</span>
+                    <img src={{ Storage::disk('s3')->url("/{$buy->image_file_name}") }} alt="" width=250px
+                        height=250px></a>
                 </div>
                 <div class="card-body p-1">
                     <span class="card-title">{{ $buy->day }}</span>

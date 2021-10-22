@@ -40,7 +40,8 @@
                         <th>{{ $todo->deadline }}</th>
                         <th>
                             <div class='btn-toolbar' role="toolbar">
-                                <a class="btn btn-primary" 　role="button" href="{{ route('todos.edit', ['todo' => $todo]) }}">編集</a>
+                                <a class="btn btn-primary" 　role="button"
+                                    href="{{ route('todos.edit', ['todo' => $todo]) }}">編集</a>
                                 <form method="POST" action="{{ route('todos.destroy', ['todo' => $todo]) }}">
                                     @csrf
                                     @method('DELETE')
@@ -52,7 +53,7 @@
                 </tbody>
             @endforeach
         </table>
-
     </div>
 
 @endsection
+
