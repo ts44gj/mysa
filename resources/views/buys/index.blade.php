@@ -15,6 +15,10 @@
                         <input type="file" name="file">
                         <input class="mr-5" name="day" type="date">
                     </div>
+                    <div class="form-group">
+                        <buy-tags-input>
+                        </buy-tags-input>
+                    </div>
                     <button type="submit" class="btn blue-gradient btn-block">投稿する</button>
                 </form>
             </div>
