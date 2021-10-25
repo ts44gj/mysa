@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Todo;
+use App\Morning;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class TodoController extends Controller
+class MorningController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Todo $todos)
+    public function index(Morning $morning)
     {
-        //$todos = Todo::orderByRaw('`deadline` IS NULL ASC')->orderBy('deadline')->get();
-        $todos = Todo::orderBy('deadline', 'desc')->get();
+        $morning = Morning::all();
 
-        return view('todos.index', ['todos' => $todos]);
-
+        return view('morning.index', ['mornings' => $morning]);
     }
 
     /**
@@ -37,13 +36,14 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Todo $todo)
+    public function store(Request $request, Morning $morning)
     {
-        $todo->todo = $request->todo;
-        $todo->deadline = $request->deadline;
-        $todo->user_id = $request->user()->id;
-        $todo->save();
-        return redirect()->route('todos.index');
+        $morning->time = $request->time;
+        $morning->day = Carbon::today();
+        $morning->user_id = $request->user()->id;
+        $morning->save();
+
+        return redirect()->route('mornings.index');
 
     }
 
@@ -53,9 +53,9 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Todo $todo)
+    public function show($id)
     {
-       return view('todos.edit',['todo'=>$todo]);
+        //
     }
 
     /**
@@ -64,10 +64,9 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Todo $todo)
+    public function edit($id)
     {
-      return view('todos.edit', ['todo' => $todo]);
-
+        //
     }
 
     /**
@@ -77,11 +76,9 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todo $todo)
+    public function update(Request $request, $id)
     {
-        $todo->fill($request->all())->save();
-        return redirect()->route('todos.index');
-
+        //
     }
 
     /**
@@ -90,10 +87,10 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
+    public function destroy(Morning $morning)
     {
-        $todo->delete();
-        return redirect()->route('todos.index');
+        $morning->delete();
+        return redirect()->route('mornings.index');
 
     }
 }

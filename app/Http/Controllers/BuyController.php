@@ -18,10 +18,6 @@ class BuyController extends Controller
      */
     public function index()
     {
-
-        //$buys = Buy::orderBy('day', 'desc')->get();
-
-        //return view('buys.index' /*, ['buys' => $buys]*/);
         $buys = Buy::all();
 
         return view('buys.index', ['buys' => $buys]);
