@@ -17,8 +17,8 @@
                     @method('PATCH')
                     @csrf
                     <div class="md-form">
-                        <input class="form-control col-8 mr-5" name="todo" type="text">
-                        <input class="mr-5" name="deadline" type="date">
+                        <input class="form-control col-8 mr-5" name="todo" type="text" required value="{{ $todo->todo ?? old('title') }}">
+                        <input class="mr-5" name="deadline" type="date" required value="{{ $todo->deadline ?? old('deadline') }}" >
                     </div>
                     <button type="submit" class="btn blue-gradient btn-block">投稿する</button>
                 </form>

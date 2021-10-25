@@ -42,12 +42,6 @@
                             <div class='btn-toolbar' role="toolbar">
                                 <a class="" 　role="button" href="{{ route('todos.edit', ['todo' => $todo]) }}"><i
                                         class="fas fa-edit fa-lg icon_blue fa-border"></i></a>
-                                <!-- <form method="POST" action="{{ route('todos.destroy', ['todo' => $todo]) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"> <i
-                                                    class="fas fa-trash-alt fa-lg icon_red fa-border"></i></button>
-                                        </form> -->
                                 </a>
                                 &nbsp;
                                 <a class="" data-toggle="modal"
