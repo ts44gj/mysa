@@ -12,6 +12,7 @@
         <div class="card">
             <div class="card-header">todolist</div>
             <div class="card-body d-flex flex-row">
+                 @include('error_card_list')
                 <form method="POST" action="{{ route('todos.update', ['todo' => $todo]) }}">
                     @method('PATCH')
                     @csrf

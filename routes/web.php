@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 Route::get('/', function () {
     return view('top');
 })->name('top');
@@ -19,9 +19,7 @@ Route::get('/usertop','TopController@index')->name('userTop');
 Route::get('/side', function () {
     return view('sidebar');
 })->name('side');
-
-Auth::routes();
-Route::resource('todos','TodoController');
-Route::resource('buys','BuyController');
+Route::resource('todos','TodoController')->middleware('auth'); ;
+Route::resource('buys','BuyController')->middleware('auth'); ;
 
 
