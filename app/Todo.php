@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Todo extends Model
 {
@@ -11,7 +12,7 @@ class Todo extends Model
         'deadline',
     ];
 
-    public function user()
+       public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');
     }

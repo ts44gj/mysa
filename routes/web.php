@@ -20,6 +20,8 @@ Route::get('/side', function () {
     return view('sidebar');
 })->name('side');
 Route::resource('todos','TodoController')->middleware('auth'); ;
-Route::resource('buys','BuyController')->middleware('auth'); ;
+Route::resource('buys','BuyController')->middleware('auth');
+Route::resource('mornings', 'MorningController')->middleware('auth');
+
 
 

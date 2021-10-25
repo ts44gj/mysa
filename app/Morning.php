@@ -5,15 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Buy extends Model
+class Morning extends Model
 {
-
-     protected $fillable = [
-        'image_file_name', 'image_title','day','user_id'
+    protected $fillable = [
+        'time','day','user_id'
     ];
 
-      public function user(): BelongsTo
+       public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');
     }
+
 }
