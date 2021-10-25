@@ -3,7 +3,7 @@
 @section('title', 'todoリスト')
 
 @section('pageCss')
-    <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/todo.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -40,14 +40,46 @@
                         <th>{{ $todo->deadline }}</th>
                         <th>
                             <div class='btn-toolbar' role="toolbar">
-                                <a class="btn btn-primary" 　role="button"
-                                    href="{{ route('todos.edit', ['todo' => $todo]) }}">編集</a>
-                                <form method="POST" action="{{ route('todos.destroy', ['todo' => $todo]) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" 　type="submit">削除する</button>
-                                </form>
+                                <a class="" 　role="button" href="{{ route('todos.edit', ['todo' => $todo]) }}"><i
+                                        class="fas fa-edit fa-lg icon_blue fa-border"></i></a>
+                                <!-- <form method="POST" action="{{ route('todos.destroy', ['todo' => $todo]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"> <i
+                                                    class="fas fa-trash-alt fa-lg icon_red fa-border"></i></button>
+                                        </form> -->
+                                </a>
+                                &nbsp;
+                                <a class="" data-toggle="modal"
+                                    data-target="#modal-delete-{{ $todo->id }}">
+                                    <i class="fas fa-trash-alt fa-lg icon_red fa-border"></i>
+                                </a>
                             </div>
+
+                            <!-- modal -->
+                            <div id="modal-delete-{{ $todo->id }}" class="modal fade" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form method="POST" action="{{ route('todos.destroy', ['todo' => $todo]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="modal-body">
+                                                {{ $todo->title }}を削除します。よろしいですか？
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                                                <button type="submit" class="btn btn-danger">削除する</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- modal -->
                         </th>
                     </tr>
                 </tbody>
@@ -55,5 +87,6 @@
         </table>
     </div>
 
-@endsection
 
+
+@endsection
