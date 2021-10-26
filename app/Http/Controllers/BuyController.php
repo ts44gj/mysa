@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Buy;
+use App\Tag;
 use Illuminate\Http\Request;
-use Storage;
 use Illuminate\Support\Facades\Validator;
-use App\Auth;
-
+use Storage;
 
 class BuyController extends Controller
 {
@@ -40,9 +39,9 @@ class BuyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Buy $buy)
+    public function store(Request $request, Buy $buy, Tag $tag)
     {
-       /* $buy = new Buy;
+        /* $buy = new Buy;
         $form = $request->all();
 
         $buy->text = $request->text;
@@ -61,36 +60,39 @@ class BuyController extends Controller
         //画像およびコメントアップロード
 
 //Validatorファサードのmakeメソッドの第１引数は、バリデーションを行うデータ。
-//第２引数はそのデータに適用するバリデーションルール
+        //第２引数はそのデータに適用するバリデーションルール
         $validator = Validator::make($request->all(), [
             'file' => 'required|max:10240|mimes:jpeg,gif,png',
-            'comment' => 'required|max:191'
+            'comment' => 'required|max:191',
         ]);
 
 //上記のバリデーションがエラーの場合、ビューにバリデーション情報を渡す
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return back()->withInput()->withErrors($validator);
         }
 //s3に画像を保存。第一引数はs3のディレクトリ。第二引数は保存するファイル。
-//第三引数はファイルの公開設定。
+        //第三引数はファイルの公開設定。
         $file = $request->file('file');
         $path = Storage::disk('s3')->putFile('img', $file, 'public');
 //カラムに画像のパスとタイトルを保存
-       Buy::create([
+
+
+        Buy::create([
             'image_file_name' => $path,
             'image_title' => $request->comment,
             'day' => $request->day,
-            'user_id' => $request->user()->id
+            'user_id' => $request->user()->id,
         ]);
 
-       /* $buy = new Buy;
+        /* $buy = new Buy;
         $buy ->image_file_name -> $path;
         $buy->image_title = $request->comment;
         $buy->day = $request->day;
         $buy->user_id = $request->user()->id;
         $buy->save();*/
 
-        return redirect('/');
+        return redirect()->route('buys.index');
+
     }
 
     /**
@@ -133,8 +135,9 @@ class BuyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Buy $buy)
     {
-        //
+        $buy->delete();
+        return redirect()->route('buys.index');
     }
 }
