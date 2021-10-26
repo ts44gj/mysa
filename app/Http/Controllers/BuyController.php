@@ -39,30 +39,14 @@ class BuyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Buy $buy, Tag $tag)
+    public function store(Request $request, Buy $buy)
     {
-        /* $buy = new Buy;
-        $form = $request->all();
-
-        $buy->text = $request->text;
-        $buy->time = $request->time;
-        //s3アップロード開始
-        $image = $request->file('image');
-        // バケットの`img`フォルダへアップロード
-        $path = Storage::disk('s3')->putFile('img', $image, 'public');
-        // アップロードした画像のフルパスを取得
-        $buy->path = Storage::disk('s3')->url($path);
-        $buy->user_id = $request->user()->id;
-        $buy->save();
-
-        return redirect()->route('buys.index');*/
-
         //画像およびコメントアップロード
 
 //Validatorファサードのmakeメソッドの第１引数は、バリデーションを行うデータ。
         //第２引数はそのデータに適用するバリデーションルール
         $validator = Validator::make($request->all(), [
-            'file' => 'required|max:10240|mimes:jpeg,gif,png',
+            'file' => 'required|max:204,800|mimes:jpeg,gif,png',
             'comment' => 'required|max:191',
         ]);
 
@@ -83,14 +67,6 @@ class BuyController extends Controller
             'day' => $request->day,
             'user_id' => $request->user()->id,
         ]);
-
-        /* $buy = new Buy;
-        $buy ->image_file_name -> $path;
-        $buy->image_title = $request->comment;
-        $buy->day = $request->day;
-        $buy->user_id = $request->user()->id;
-        $buy->save();*/
-
         return redirect()->route('buys.index');
 
     }
