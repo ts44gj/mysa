@@ -15,34 +15,12 @@
                         <input type="file" name="file">
                         <input class="mr-5" name="day" type="date">
                     </div>
-                    <div class="form-group">
-                        <buy-tags-input>
-                        </buy-tags-input>
-                    </div>
                     <button type="submit" class="btn blue-gradient btn-block">投稿する</button>
                 </form>
             </div>
         </div>
     </div>
 
-    {{-- {!! Form::open(['route' => 'buys.store', 'method' => 'post', 'files' => true]) !!}
-    <div class="form-group">
-        {!! Form::label('file', '画像投稿', ['class' => 'control-label']) !!}
-        {!! Form::file('file') !!}
-    </div>
-    <div class="form-group m-0">
-        {!! Form::label('textarea', '投稿コメント', ['class' => 'control-label']) !!}
-        {!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('day', '日時', ['class' => 'control-label']) !!}
-        {{ Form::date('day', null, ['class'=>'form-control']) }}
-    </div>
-    <div class="form-group text-center">
-        {!! Form::submit('投稿', ['class' => 'btn btn-primary my-2']) !!}
-    </div>
-
-    {!! Form::close() !!} --}}
     <div class="container">
         <div class="card">
             @foreach ($buys as $buy)
@@ -55,6 +33,15 @@
                 </div>
                 <div class="card-body p-1">
                     <span class="card-title">{{ $buy->day }}</span>
+                </div>
+                <div class='btn-toolbar' role="toolbar">
+                    <form method="POST" action="{{ route('buys.destroy', ['buy' => $buy]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
                 </div>
             @endforeach
         </div>

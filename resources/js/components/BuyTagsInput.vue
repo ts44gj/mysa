@@ -47,9 +47,25 @@ export default {
         return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;
       });
     },
-    tagsJson() {
-      return JSON.stringify(this.tags);
+     tagsJson() {
+      return JSON.stringify(this.tags)
     },
   },
 };
+
 </script>
+<style lang="css" scoped>
+.vue-tags-input {
+  max-width: inherit;
+}
+</style>
+<style lang="css">
+.vue-tags-input .ti-tag {
+  background: transparent;
+  border: 1px solid #747373;
+  color: #747373;
+  margin-right: 4px;
+  border-radius: 0px;
+  font-size: 13px;
+}
+</style>
