@@ -46,7 +46,7 @@
             </div> -->
             <div class="col-12 morningtable">
                 <table class="table table-bordered table table-hover table-sm">
-                    <caption>List of todos</caption>
+                    <caption>List of mornings</caption>
                     <thead>
                         <tr>
                             <th scope="col">todo</th>
