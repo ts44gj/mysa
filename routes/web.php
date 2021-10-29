@@ -22,6 +22,7 @@ Route::get('/side', function () {
 Route::resource('todos','TodoController')->middleware('auth'); ;
 Route::resource('buys','BuyController')->middleware('auth');
 Route::resource('mornings', 'MorningController')->middleware('auth');
+Route::resource('memos','MemoController')->middleware('auth');
 
 
 

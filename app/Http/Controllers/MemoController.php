@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Morning;
-use Carbon\Carbon;
+use App\Http\Requests\MemoRequest;
 use Illuminate\Http\Request;
+use App\Memo;
 
-class MorningController extends Controller
+class MemoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Morning $morning)
+    public function index()
     {
-        $morning = Morning::all();
+       $memos= Memo::all();
 
-        return view('mornings.index', ['mornings' => $morning]);
+        return view("memos.index",['memos' => $memos]);
+
     }
 
     /**
@@ -27,7 +28,8 @@ class MorningController extends Controller
      */
     public function create()
     {
-        //
+        return view("memos.index");
+
     }
 
     /**
@@ -36,14 +38,13 @@ class MorningController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Morning $morning)
+    public function store(MemoRequest $request, Memo $memo)
     {
-        $morning->time = $request->time;
-        $morning->day = Carbon::today();
-        $morning->user_id = $request->user()->id;
-        $morning->save();
-
-        return redirect()->route('mornings.index');
+        $memo->title = $request->title;
+        $memo->body = $request->body;
+        $memo->user_id = $request->user()->id;
+        $memo->save();
+        return redirect()->route('memos.index',);
 
     }
 
@@ -64,9 +65,9 @@ class MorningController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Memo $memo)
     {
-        //
+        return view('memos.edit',['memo' => $memo]);
     }
 
     /**
@@ -87,10 +88,8 @@ class MorningController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Morning $morning)
+    public function destroy($id)
     {
-        $morning->delete();
-        return redirect()->route('mornings.index');
-
+        //
     }
 }
