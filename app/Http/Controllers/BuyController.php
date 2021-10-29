@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Buy;
 use App\Tag;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request\BuyRequest;
 use Illuminate\Support\Facades\Validator;
 use Storage;
 
@@ -39,7 +39,7 @@ class BuyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Buy $buy)
+    public function store(BuyRequest $request, Buy $buy)
     {
         //画像およびコメントアップロード
 
