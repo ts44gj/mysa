@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MemoRequest;
-use Illuminate\Http\Request;
 use App\Memo;
+use Illuminate\Http\Request;
 
 class MemoController extends Controller
 {
@@ -15,9 +15,9 @@ class MemoController extends Controller
      */
     public function index()
     {
-       $memos= Memo::all();
+        $memos = Memo::all();
 
-        return view("memos.index",['memos' => $memos]);
+        return view("memos.index", ['memos' => $memos]);
 
     }
 
@@ -44,7 +44,7 @@ class MemoController extends Controller
         $memo->body = $request->body;
         $memo->user_id = $request->user()->id;
         $memo->save();
-        return redirect()->route('memos.index',);
+        return redirect()->route('memos.index', );
 
     }
 
@@ -67,7 +67,7 @@ class MemoController extends Controller
      */
     public function edit(Memo $memo)
     {
-        return view('memos.edit',['memo' => $memo]);
+        return view('memos.edit', ['memo' => $memo]);
     }
 
     /**
@@ -77,9 +77,10 @@ class MemoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MemoRequest $request, Memo $memo)
     {
-        //
+        $memo->fill($request->all())->save();
+        return redirect()->route('memos.index');
     }
 
     /**
@@ -88,8 +89,10 @@ class MemoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Memo $memo)
     {
-        //
+        $memo->delete();
+        return redirect()->route('memos.index');
+
     }
 }
