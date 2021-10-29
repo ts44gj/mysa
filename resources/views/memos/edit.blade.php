@@ -16,6 +16,7 @@
                         <div class="card-header">Memolist</div>
                         <div class="card-body">
                             <form method="POST" action="{{ route('memos.update',['memo'=>$memo]) }}">
+                                @method('PATCH')
                                 @csrf
                                 <div class="form-group">
                                     <div class=md-form>
