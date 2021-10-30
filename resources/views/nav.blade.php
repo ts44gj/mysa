@@ -11,10 +11,8 @@
                 @guest
                     <li class="nav-item active"><a class="nav-link" href="{{ route('register') }}">ユーザー登録</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ログイン</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('top') }}">Home</a></li>
                 @endguest
                 @auth
-                    <li class="nav-item active"><a class="nav-link" href="{{ route('userTop') }}">Home</a></li>
                     <li class="nav-item "><a class="nav-link" href="{{ route('todos.index') }}">todo</a></li>
                     <li class="nav-item "><a class="nav-link" href="{{ route('buys.index') }}">buylist</a></li>
                     <li class="nav-item "><a class="nav-link" href="{{ route('mornings.index') }}">morninglist</a></li>
