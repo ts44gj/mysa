@@ -56,7 +56,8 @@ class MemoController extends Controller
      */
     public function show(Memo $memo)
     {
-        return view('memos.show',['memos'=>$memo]);
+
+        return view('memos.show', ['memo' => $memo]);
     }
 
     /**
