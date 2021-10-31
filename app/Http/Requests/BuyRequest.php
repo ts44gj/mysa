@@ -27,13 +27,13 @@ class BuyRequest extends FormRequest
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
         ];
 
-
     }
-     public function attributes()
+    public function attributes()
     {
         return [
 
             'tags' => 'タグ',
+            'comment' => ['required', 'max:50'],
 
         ];
     }

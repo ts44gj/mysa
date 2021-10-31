@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Buy;
-use App\Tag;
-use Illuminate\Http\Request\BuyRequest;
+use Illuminate\Http\Request;
+//use Illuminate\Http\Request\BuyRequest;
+use App\Http\Requests\BuyRequest;
 use Illuminate\Support\Facades\Validator;
 use Storage;
 
@@ -60,7 +61,6 @@ class BuyController extends Controller
         $path = Storage::disk('s3')->putFile('img', $file, 'public');
 //カラムに画像のパスとタイトルを保存
 
-
         Buy::create([
             'image_file_name' => $path,
             'image_title' => $request->comment,
@@ -77,9 +77,10 @@ class BuyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Buy $buy)
     {
-        //
+        return view('buys.show', ['buy' => $buy]);
+
     }
 
     /**
@@ -88,9 +89,9 @@ class BuyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+
     }
 
     /**
@@ -100,9 +101,10 @@ class BuyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+
+
     }
 
     /**
