@@ -72,7 +72,7 @@
                     @foreach ($buys as $buy)
                         <tbody>
                             <tr>
-                                <th scope="row" class="todo">{{ $buy->image_title }}</th>
+                                <th scope="row" class="todo"><a class="text-dark" href="{{ route('buys.show', ['buy' => $buy]) }}">{{ $buy->image_title }}</a></th>
                                 <th>{{ $buy->day }}</th>
                                 <th>
                                     <img src={{ Storage::disk('s3')->url("/{$buy->image_file_name}") }} alt="" width=100px
