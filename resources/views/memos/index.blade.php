@@ -49,7 +49,8 @@
             @foreach ($memos as $memo)
                 <tbody>
                     <tr>
-                        <th scope="row" class=""><a class="text-dark" href="{{ route('memos.show', ['memo' => $memo]) }}">{{ $memo->title }}</a></th>
+                        <th scope="row" class=""><a class="text-dark"
+                                href="{{ route('memos.show', ['memo' => $memo]) }}">{{ $memo->title }}</a></th>
                         <th>{{ $memo->body }}</th>
                         <th>
                             <div class='btn-toolbar' role="toolbar">
@@ -67,5 +68,6 @@
                         </th>
             @endforeach
         </table>
+        {{ $memos->links() }}
     </div>
 @endsection
