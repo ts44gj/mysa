@@ -15,7 +15,7 @@ class MemoController extends Controller
      */
     public function index()
     {
-        $memos = Memo::simplePaginate(10);
+        $memos = Memo::paginate(5);
 
         return view("memos.index", ['memos' => $memos]);
 
