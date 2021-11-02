@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MemoRequest;
 use App\Memo;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class MemoController extends Controller
@@ -44,6 +45,12 @@ class MemoController extends Controller
         $memo->body = $request->body;
         $memo->user_id = $request->user()->id;
         $memo->save();
+
+        $request->tags->each(function ($tagName) use ($memo) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $memo->tags()->attach($tag);
+        });
+
         return redirect()->route('memos.index', );
 
     }

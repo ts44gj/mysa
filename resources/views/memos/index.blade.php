@@ -25,6 +25,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <buy-tags-input>
+                                    </buy-tags-input>
+                                </div>
+                                <div class="form-group">
                                     <textarea class="form-control" name="body" rows="10"
                                         requiredvalue="{{ old('body') }}"></textarea>
                                 </div>
@@ -49,7 +53,8 @@
                     @foreach ($memos as $memo)
                         <tbody>
                             <tr>
-                                <th scope="row" class=""><a class="text-dark" href="{{ route('memos.show', ['memo' => $memo]) }}">{{ $memo->title }}</a></th>
+                                <th scope="row" class=""><a class="text-dark"
+                                        href="{{ route('memos.show', ['memo' => $memo]) }}">{{ $memo->title }}</a></th>
                                 <th>{{ $memo->body }}</th>
                                 <th>
                                     <div class='btn-toolbar' role="toolbar">
@@ -65,64 +70,76 @@
                                         </form>
                                     </div>
                                 </th>
-                                <div class="card">
-                                    <div class="card-header">
-                                        memo内容
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $memo->title }}</h5>
-                                        <p class="card-text">{{ $memo->body }}</p>
-                                        <a href="{{ route('memos.show', ['memo' => $memo]) }}" class="card-link">詳細</a>
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-caret-down"></i>
-                                            </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                    href="{{ route('memos.edit', ['memo' => $memo]) }}">
-                                                    <i class="fas fa-pen mr-1"></i>記事を更新する
-                                                </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" data-toggle="modal"
-                                                    data-target="#modal-delete-{{ $memo->id }}">
-                                                    <i class="fas fa-trash-alt mr-1"></i>記事を削除する
-                                                </a>
-                                            </div>
-                                        </div>
-                                        </a>
-                                    </div>
-                                </div>
                             </tr>
                         </tbody>
-                    @endforeach
-                </table>
-            </div>
-
-            {{ $memos->links() }}
-            <!-- モーダル -->
-            <div id="modal-delete-{{ $memo->id }}" class="modal fade" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <div class="card">
+                            <div class="card-header">
+                                memo内容
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $memo->title }}</h5>
+                                <p class="card-text">{{ $memo->body }}</p>
+                                @foreach ($memo->tags as $tag)
+                                    @if ($loop->first)
+                                        <div class="card-body pt-0 pb-4 pl-3">
+                                            <div class="card-text line-height">
+                                    @endif
+                                    <a href="" class="border p-1 mr-1 mt-1 text-muted">
+                                        {{ $tag->name }}
+                                    </a>
+                                    @if ($loop->last)
+                            </div>
                         </div>
-                        <form method="POST" action="{{ route('memos.destroy', ['memo' => $memo]) }}">
-                            @csrf
-                            @method('DELETE')
-                            <div class="modal-body">
-                                {{ $memo->title }}を削除します。よろしいですか？
-                            </div>
-                            <div class="modal-footer justify-content-between">
-                                <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
-                                <button type="submit" class="btn btn-danger">削除する</button>
-                            </div>
-                        </form>
+                    @endif
+                    @endforeach
+                    <a href="{{ route('memos.show', ['memo' => $memo]) }}" class="card-link">詳細</a>
+                    <div class="dropdown">
+                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{{ route('memos.edit', ['memo' => $memo]) }}">
+                                <i class="fas fa-pen mr-1"></i>記事を更新する
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" data-toggle="modal"
+                                data-target="#modal-delete-{{ $memo->id }}">
+                                <i class="fas fa-trash-alt mr-1"></i>記事を削除する
+                            </a>
+                        </div>
                     </div>
-                </div>
+                    </a>
             </div>
-            <!-- モーダル -->
         </div>
+        @endforeach
+        </table>
+    </div>
+
+    {{ $memos->links() }}
+    <!-- モーダル -->
+    <div id="modal-delete-{{ $memo->id }}" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST" action="{{ route('memos.destroy', ['memo' => $memo]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        {{ $memo->title }}を削除します。よろしいですか？
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                        <button type="submit" class="btn btn-danger">削除する</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- モーダル -->
+    </div>
     </div>
 @endsection
