@@ -15,7 +15,7 @@ class MorningController extends Controller
      */
     public function index(Morning $morning)
     {
-        $morning = Morning::all();
+        $morning = Morning::paginate(30);
 
         return view('mornings.index', ['mornings' => $morning]);
     }
