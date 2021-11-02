@@ -7,35 +7,36 @@
 @endsection
 
 @section('content')
-    <div class="col-12 memotable">
-        <table class="table table-bordered table table-hover table-sm">
-            <caption>List of memos</caption>
-            <thead>
-                <tr>
-                    <th scope="col">タイトル</th>
-                    <th scope="col">内容</th>
-                    <th scope="col">削除</th>
-                </tr>
-            </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row" class=""><a class="text-dark" href="{{ route('memos.show', ['memo' => $memo]) }}">{{ $memo->title }}</a></th>
-                        <th>{{ $memo->body }}</th>
-                        <th>
-                            <div class='btn-toolbar' role="toolbar">
-                                <a class="" href="{{ route('memos.edit', ['memo' => $memo]) }}">
-                                    <i class="fas fa-pen mr-1"></i>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        memo内容
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $memo->title }}</h5>
+                        <p class="card-text">{{ $memo->body }}</p>
+                        <a href="{{ route('memos.show', ['memo' => $memo]) }}" class="card-link">詳細</a>
+                        <div class="dropdown">
+                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-caret-down"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('memos.edit', ['memo' => $memo]) }}">
+                                    <i class="fas fa-pen mr-1"></i>記事を更新する
                                 </a>
-                                <form method="POST" action="{{ route('memos.destroy', ['memo' => $memo]) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </form>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" data-toggle="modal"
+                                    data-target="#modal-delete-{{ $memo->id }}">
+                                    <i class="fas fa-trash-alt mr-1"></i>記事を削除する
+                                </a>
                             </div>
-                        </th>
-
-        </table>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-        @endsection
+@endsection
