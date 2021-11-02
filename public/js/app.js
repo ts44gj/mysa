@@ -2214,6 +2214,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2221,18 +2225,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      tag: "",
+      tag: '',
       tags: [],
       autocompleteItems: [{
-        text: "Spain"
+        text: 'Spain'
       }, {
-        text: "France"
+        text: 'France'
       }, {
-        text: "USA"
+        text: 'USA'
       }, {
-        text: "Germany"
+        text: 'Germany'
       }, {
-        text: "China"
+        text: 'China'
       }]
     };
   },
