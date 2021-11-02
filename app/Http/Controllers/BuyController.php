@@ -18,7 +18,7 @@ class BuyController extends Controller
      */
     public function index()
     {
-        $buys = Buy::all();
+        $buys = Buy::paginate(10);
 
         return view('buys.index', ['buys' => $buys]);
 

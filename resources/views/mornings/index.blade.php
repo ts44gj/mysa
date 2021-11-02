@@ -56,7 +56,7 @@
                     @foreach ($mornings as $morning)
                         <tbody>
                             <tr>
-                                <th scope="row" class="todo">{{ $morning->time }}</th>
+                                <th scope="row" class="todo">{{ substr($morning->time,0,5) }}</th>
                                 <th>{{ $morning->day }}</th>
                                 <th>
                                     <div class='btn-toolbar' role="toolbar">
