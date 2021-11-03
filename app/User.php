@@ -45,4 +45,12 @@ class User extends Authenticatable
   {
     return $this->hasMany('App\Buy');
   }
+  Public function memo()
+  {
+    return $this->hasMany('App\Memo');
+  }
+  Public function morning()
+  {
+    return $this->hasMany('App\Morning');
+  }
 }
