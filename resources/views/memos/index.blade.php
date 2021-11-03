@@ -79,7 +79,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $memo->title }}</h5>
                                 <p class="card-text">{{ $memo->body }}</p>
-                                @foreach ($memo->tags as $tag)
+                               <!-- @foreach ($memo->tags as $tag)
                                     @if ($loop->first)
                                         <div class="card-body pt-0 pb-4 pl-3">
                                             <div class="card-text line-height">
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                     @endif
-                    @endforeach
+                    @endforeach -->
                     <a href="{{ route('memos.show', ['memo' => $memo]) }}" class="card-link">詳細</a>
                     <div class="dropdown">
                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
