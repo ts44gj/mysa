@@ -16,7 +16,7 @@ class MemoController extends Controller
      */
     public function index()
     {
-        $memos = Memo::paginate(5);
+        $memos = Memo::orderBy('created_at', 'desc')->paginate(5);
 
         return view("memos.index", ['memos' => $memos]);
 
@@ -39,6 +39,7 @@ class MemoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(MemoRequest $request, Memo $memo)
     {
         $memo->title = $request->title;
@@ -54,7 +55,6 @@ class MemoController extends Controller
         return redirect()->route('memos.index', );
 
     }
-
     /**
      * Display the specified resource.
      *

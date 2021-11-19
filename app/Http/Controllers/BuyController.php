@@ -40,7 +40,7 @@ class BuyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BuyRequest $request, Buy $buy)
+    public function store(Request $request, Buy $buy)
     {
         //画像およびコメントアップロード
 
@@ -50,7 +50,6 @@ class BuyController extends Controller
             'file' => 'required|max:204,800|mimes:jpeg,gif,png',
             'comment' => 'required|max:191',
         ]);
-
 //上記のバリデーションがエラーの場合、ビューにバリデーション情報を渡す
         if ($validator->fails()) {
             return back()->withInput()->withErrors($validator);
@@ -60,7 +59,6 @@ class BuyController extends Controller
         $file = $request->file('file');
         $path = Storage::disk('s3')->putFile('img', $file, 'public');
 //カラムに画像のパスとタイトルを保存
-
         Buy::create([
             'image_file_name' => $path,
             'image_title' => $request->comment,

@@ -65,12 +65,14 @@
                                     </thead>
                                     @auth
                                         @foreach ($todos as $todo)
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row" class="todo">{{ $todo->todo }}</th>
-                                                    <th>{{ $todo->deadline }}</th>
-                                                </tr>
-                                            </tbody>
+                                            @if (Auth::user()->can('view', $todo))
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row" class="todo">{{ $todo->todo }}</th>
+                                                        <th>{{ $todo->deadline }}</th>
+                                                    </tr>
+                                                </tbody>
+                                            @endif
                                         @endforeach
                                     @endauth
                                 </table>
@@ -89,16 +91,18 @@
                                     <tbody>
                                         @auth
                                             @foreach ($buys as $buy)
-                                                <tr>
-                                                    <th>
-                                                        <div class="card-body p-1">
-                                                            <span class="card-title">{{ $buy->image_title }}</span>
-                                                        </div>
-                                                        <div class="card-body p-1">
-                                                            <span class="card-title">{{ $buy->day }}</span>
-                                                        </div>
-                                                    </th>
-                                                </tr>
+                                                @if (Auth::user()->can('view', $buy))
+                                                    <tr>
+                                                        <th>
+                                                            <div class="card-body p-1">
+                                                                <span class="card-title">{{ $buy->image_title }}</span>
+                                                            </div>
+                                                            <div class="card-body p-1">
+                                                                <span class="card-title">{{ $buy->day }}</span>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                @endif
                                             @endforeach
                                         @endauth
                                     </tbody>
