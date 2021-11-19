@@ -34,31 +34,31 @@
             </div>
 
             <!--  <div class="col-12 buytable">
-                                            <div class="card">
-                                                @foreach ($buys as $buy)
-                                                    <div class="card-header text-center">
-                                                        <span class="card-title">{{ $buy->image_title }}</span>
+                                                    <div class="card">
+                                                        @foreach ($buys as $buy)
+                                                            <div class="card-header text-center">
+                                                                <span class="card-title">{{ $buy->image_title }}</span>
+                                                            </div>
+                                                            <div class="card-body p-1">
+                                                                <img src={{ Storage::disk('s3')->url("/{$buy->image_file_name}") }} alt="" width=250px
+                                                                    height=250px></a>
+                                                            </div>
+                                                            <div class="card-body p-1">
+                                                                <span class="card-title">{{ $buy->day }}</span>
+                                                            </div>
+                                                            <div class='btn-toolbar' role="toolbar">
+                                                                <form method="POST" action="{{ route('buys.destroy', ['buy' => $buy]) }}">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
-                                                    <div class="card-body p-1">
-                                                        <img src={{ Storage::disk('s3')->url("/{$buy->image_file_name}") }} alt="" width=250px
-                                                            height=250px></a>
-                                                    </div>
-                                                    <div class="card-body p-1">
-                                                        <span class="card-title">{{ $buy->day }}</span>
-                                                    </div>
-                                                    <div class='btn-toolbar' role="toolbar">
-                                                        <form method="POST" action="{{ route('buys.destroy', ['buy' => $buy]) }}">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit">
-                                                                <i class="fas fa-trash-alt"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                                </div>
+                                            </div> -->
             <div class="col-12 buytable">
                 <table class="table table-bordered table table-hover table-sm">
                     <caption>List of buys</caption>
@@ -70,27 +70,30 @@
                         </tr>
                     </thead>
                     @foreach ($buys as $buy)
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="todo"><a class="text-dark"
-                                        href="{{ route('buys.show', ['buy' => $buy]) }}">{{ $buy->image_title }}</a>
-                                </th>
-                                <th>{{ $buy->day }}</th>
-                                <th>
-                                    <img src={{ Storage::disk('s3')->url("/{$buy->image_file_name}") }} alt="" width=100px
-                                        height=100px></a>
-                                </th>
-                                <th>
-                                    <div class='btn-toolbar' role="toolbar">
-                                        <form method="POST" action="{{ route('buys.destroy', ['buy' => $buy]) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </th>
+                        @if (Auth::user()->can('view', $buy))
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="todo"><a class="text-dark"
+                                            href="{{ route('buys.show', ['buy' => $buy]) }}">{{ $buy->image_title }}</a>
+                                    </th>
+                                    <th>{{ $buy->day }}</th>
+                                    <th>
+                                        <img src={{ Storage::disk('s3')->url("/{$buy->image_file_name}") }} alt=""
+                                            width=100px height=100px></a>
+                                    </th>
+                                    <th>
+                                        <div class='btn-toolbar' role="toolbar">
+                                            <form method="POST" action="{{ route('buys.destroy', ['buy' => $buy]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </th>
+                            </tbody>
+                        @endif
                     @endforeach
                 </table>
             </div>

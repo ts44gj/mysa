@@ -10,7 +10,8 @@ use App\Buy;
 class TopController extends Controller
 {
      public function index(Todo $todos, Buy $buys)
-    {$todos = Todo::orderBy('deadline', 'desc')->get();
+    {
+        $todos = Todo::orderBy('deadline', 'desc')->get();
         $buys = Buy::all();
 
 

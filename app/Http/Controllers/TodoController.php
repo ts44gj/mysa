@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Todo;
 use Illuminate\Http\Request;
+use App\User;
 
 class TodoController extends Controller
 {

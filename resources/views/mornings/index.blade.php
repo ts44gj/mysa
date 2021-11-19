@@ -26,24 +26,24 @@
                     </div>
                 </div>
             </div>
-          <!--  <div class="col-12 morningtable">
-                @foreach ($mornings as $morning)
-                    <div class="card-header text-center">
-                        <span class="card-title">{{ $morning->time }}</span>
-                    </div>
-                    <div class="card-body p-1">
-                        <span class="card-title">{{ $morning->day }}</span>
-                    </div>
-                    <div class='btn-toolbar' role="toolbar">
-                        <form method="POST" action="{{ route('mornings.destroy', ['morning' => $morning]) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                    </div>
-                @endforeach
-            </div> -->
+            <!--  <div class="col-12 morningtable">
+                    @foreach ($mornings as $morning)
+                        <div class="card-header text-center">
+                            <span class="card-title">{{ $morning->time }}</span>
+                        </div>
+                        <div class="card-body p-1">
+                            <span class="card-title">{{ $morning->day }}</span>
+                        </div>
+                        <div class='btn-toolbar' role="toolbar">
+                            <form method="POST" action="{{ route('mornings.destroy', ['morning' => $morning]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                        </div>
+                    @endforeach
+                </div> -->
             <div class="col-12 morningtable">
                 <table class="table table-bordered table table-hover table-sm">
                     <caption>List of mornings</caption>
@@ -54,23 +54,25 @@
                         </tr>
                     </thead>
                     @foreach ($mornings as $morning)
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="todo">{{ substr($morning->time,0,5) }}</th>
-                                <th>{{ $morning->day }}</th>
-                                <th>
-                                    <div class='btn-toolbar' role="toolbar">
-                                        <form method="POST"
-                                            action="{{ route('mornings.destroy', ['morning' => $morning]) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                    </div>
-                                </th>
-                            </tr>
-                        </tbody>
+                        @if (Auth::user()->can('view', $morning))
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="todo">{{ substr($morning->time, 0, 5) }}</th>
+                                    <th>{{ $morning->day }}</th>
+                                    <th>
+                                        <div class='btn-toolbar' role="toolbar">
+                                            <form method="POST"
+                                                action="{{ route('mornings.destroy', ['morning' => $morning]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        @endif
                     @endforeach
                 </table>
             </div>

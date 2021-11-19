@@ -41,37 +41,38 @@
 
 
             <div class="col-12 memotable">
-                <table class="table table-bordered table table-hover table-sm">
-                    <caption>List of memos</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">タイトル</th>
-                            <th scope="col">内容</th>
-                            <th scope="col">削除</th>
-                        </tr>
-                    </thead>
-                    @foreach ($memos as $memo)
-                        <tbody>
-                            <tr>
-                                <th scope="row" class=""><a class="text-dark"
-                                        href="{{ route('memos.show', ['memo' => $memo]) }}">{{ $memo->title }}</a></th>
-                                <th>{{ $memo->body }}</th>
-                                <th>
-                                    <div class='btn-toolbar' role="toolbar">
-                                        <a class="" href="{{ route('memos.edit', ['memo' => $memo]) }}">
-                                            <i class="fas fa-pen mr-1"></i>
-                                        </a>
-                                        <form method="POST" action="{{ route('memos.destroy', ['memo' => $memo]) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </th>
-                            </tr>
-                        </tbody>
+                <!--<table class="table table-bordered table table-hover table-sm">
+                                    <caption>List of memos</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">タイトル</th>
+                                            <th scope="col">内容</th>
+                                            <th scope="col">削除</th>
+                                        </tr>
+                                    </thead> -->
+                @foreach ($memos as $memo)
+                    @if (Auth::user()->can('view', $memo))
+                        <!--<tbody>
+                                            <tr>
+                                                <th scope="row" class=""><a class="text-dark"
+                                                        href="{{ route('memos.show', ['memo' => $memo]) }}">{{ $memo->title }}</a></th>
+                                                <th>{{ $memo->body }}</th>
+                                                <th>
+                                                    <div class='btn-toolbar' role="toolbar">
+                                                        <a class="" href="{{ route('memos.edit', ['memo' => $memo]) }}">
+                                                            <i class="fas fa-pen mr-1"></i>
+                                                        </a>
+                                                        <form method="POST" action="{{ route('memos.destroy', ['memo' => $memo]) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </tbody> -->
                         <div class="card">
                             <div class="card-header">
                                 memo内容
@@ -88,34 +89,34 @@
                                         {{ $tag->name }}
                                     </a>
                                     @if ($loop->last)
+                                    @endif
+                                @endforeach
                             </div>
+                            <a href="{{ route('memos.show', ['memo' => $memo]) }}" class="card-link">詳細</a>
+                            <div class="dropdown">
+                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{ route('memos.edit', ['memo' => $memo]) }}">
+                                        <i class="fas fa-pen mr-1"></i>記事を更新する
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item text-danger" data-toggle="modal"
+                                        data-target="#modal-delete-{{ $memo->id }}">
+                                        <i class="fas fa-trash-alt mr-1"></i>記事を削除する
+                                    </a>
+                                </div>
+                            </div>
+                            </a>
                         </div>
                     @endif
-                    @endforeach
-                    <a href="{{ route('memos.show', ['memo' => $memo]) }}" class="card-link">詳細</a>
-                    <div class="dropdown">
-                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ route('memos.edit', ['memo' => $memo]) }}">
-                                <i class="fas fa-pen mr-1"></i>記事を更新する
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" data-toggle="modal"
-                                data-target="#modal-delete-{{ $memo->id }}">
-                                <i class="fas fa-trash-alt mr-1"></i>記事を削除する
-                            </a>
-                        </div>
-                    </div>
-                    </a>
+                @endforeach
             </div>
         </div>
-        @endforeach
-        </table>
+        <!--</table>-->
+        {{ $memos->links() }}
     </div>
-
-    {{ $memos->links() }}
     <!-- モーダル -->
     <div id="modal-delete-{{ $memo->id }}" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">

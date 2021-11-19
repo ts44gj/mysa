@@ -16,6 +16,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
+    public const HOME = '/usertop'; // この行を変更('/home'を'/'にする)
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *

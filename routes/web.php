@@ -11,14 +11,11 @@
 |
 */
 Auth::routes();
-Route::get('/', function () {
-    return view('top');
-})->name('top');
-
+//Route::get('/', function () {return view('top');})->name('top');
+Route::view('/', 'top')->name('top');
 Route::get('/usertop','TopController@index')->name('userTop');
-Route::get('/side', function () {
-    return view('sidebar');
-})->name('side');
+//Route::get('/side', function () {return view('sidebar');})->name('side');
+Route::view('/side', 'sidebar')->name('side');
 Route::resource('todos','TodoController')->middleware('auth'); ;
 Route::resource('buys','BuyController')->middleware('auth');
 Route::resource('mornings', 'MorningController')->middleware('auth');

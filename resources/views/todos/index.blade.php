@@ -40,51 +40,54 @@
                         </tr>
                     </thead>
                     @foreach ($todos as $todo)
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="todo">{{ $todo->todo }}</th>
-                                <th>{{ $todo->deadline }}</th>
-                                <th>
-                                    <div class='btn-toolbar' role="toolbar">
-                                        <a class="" 　role="button" href="{{ route('todos.edit', ['todo' => $todo]) }}"><i
-                                                class="fas fa-edit fa-lg icon_blue fa-border"></i></a>
-                                        </a>
-                                        &nbsp;
-                                        <a class="" data-toggle="modal" data-target="#modal-delete-{{ $todo->id }}">
-                                            <i class="fas fa-trash-alt fa-lg icon_red fa-border"></i>
-                                        </a>
-                                    </div>
+                        @if (Auth::user()->can('view', $todo))
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="todo">{{ $todo->todo }}</th>
+                                    <th>{{ $todo->deadline }}</th>
+                                    <th>
+                                        <div class='btn-toolbar' role="toolbar">
+                                            <a class="" 　role="button"
+                                                href="{{ route('todos.edit', ['todo' => $todo]) }}"><i
+                                                    class="fas fa-edit fa-lg icon_blue fa-border"></i></a>
+                                            </a>
+                                            &nbsp;
+                                            <a class="" data-toggle="modal" data-target="#modal-delete-{{ $todo->id }}">
+                                                <i class="fas fa-trash-alt fa-lg icon_red fa-border"></i>
+                                            </a>
+                                        </div>
 
-                                    <!-- modal -->
-                                    <div id="modal-delete-{{ $todo->id }}" class="modal fade" tabindex="-1"
-                                        role="dialog">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="閉じる">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                                        <!-- modal -->
+                                        <div id="modal-delete-{{ $todo->id }}" class="modal fade" tabindex="-1"
+                                            role="dialog">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="閉じる">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form method="POST"
+                                                        action="{{ route('todos.destroy', ['todo' => $todo]) }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <div class="modal-body">
+                                                            {{ $todo->title }}を削除します。よろしいですか？
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                                                            <button type="submit" class="btn btn-danger">削除する</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                <form method="POST"
-                                                    action="{{ route('todos.destroy', ['todo' => $todo]) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <div class="modal-body">
-                                                        {{ $todo->title }}を削除します。よろしいですか？
-                                                    </div>
-                                                    <div class="modal-footer justify-content-between">
-                                                        <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
-                                                        <button type="submit" class="btn btn-danger">削除する</button>
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- modal -->
-                                </th>
-                            </tr>
-                        </tbody>
+                                        <!-- modal -->
+                                    </th>
+                                </tr>
+                            </tbody>
+                        @endif
                     @endforeach
                 </table>
             </div>
