@@ -8,6 +8,7 @@
 
 @section('content')
     <h1>Memoリスト</h1>
+     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
     <div class="container">
         <div class=row>
             <div class="col-12">
@@ -51,7 +52,7 @@
                                         </tr>
                                     </thead> -->
                 @foreach ($memos as $memo)
-                    <!--@if (Auth::user()->can('view', $memo)) -->
+                    @if (Auth::user()->can('view', $memo))
                         <!--<tbody>
                                             <tr>
                                                 <th scope="row" class=""><a class="text-dark"
@@ -110,7 +111,7 @@
                             </div>
                             </a>
                         </div>
-                    <!--@endif -->
+                    @endif
                 @endforeach
             </div>
         </div>

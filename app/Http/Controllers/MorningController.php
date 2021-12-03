@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Morning;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -13,11 +14,12 @@ class MorningController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Morning $morning)
+    public function index(Morning $morning,User $user)
     {
-        $morning = Morning::paginate(30);
+        $user = User::find($user->id);
+        $morning = Morning::paginate(10);
 
-        return view('mornings.index', ['mornings' => $morning]);
+        return view('mornings.index', ['mornings' => $morning,]);
     }
 
     /**

@@ -8,6 +8,7 @@
 
 @section('content')
     <h1>Morningリスト</h1>
+     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
     <div class="container">
         <div class=row>
             <div class="col-12">

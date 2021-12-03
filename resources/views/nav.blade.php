@@ -15,8 +15,8 @@
                 @auth
                     <li class="nav-item "><a class="nav-link" href="{{ route('todos.index') }}">todo</a></li>
                     <li class="nav-item "><a class="nav-link" href="{{ route('buys.index') }}">buylist</a></li>
-                    <li class="nav-item "><a class="nav-link" href="{{ route('mornings.index') }}">morninglist</a></li>
-                    <li class="nav-item "><a class="nav-link" href="{{ route('memos.index') }}">memolist</a></li>
+                    <li class="nav-item "><a class="nav-link" href="{{ route('mornings.index')}}">morninglist</a></li>
+                    <li class="nav-item "><a class="nav-link" href="{{ route('memos.index', ['user' => Auth::user()])}}">memolist</a></li>
                     <li class="nav-item "><a class="nav-link" href="#">myself</a></li>
                     <!-- Dropdown -->
                     <li class="dropdown nav-item">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MemoRequest;
 use App\Memo;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 
 class MemoController extends Controller
@@ -14,11 +15,13 @@ class MemoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Memo $memos)
+    public function index(Request $request)
     {
-        $memos = Memo::paginate(5);
+       $memos = $request->user()->memos;
+       $memos = Memo::paginate(10);
 
-        return view("memos.index", ['memos' => $memos]);
+
+        return view("memos.index",['memos'=>$memos])->with(compact('memos'));
 
     }
 
