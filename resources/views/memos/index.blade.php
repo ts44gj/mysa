@@ -8,7 +8,7 @@
 
 @section('content')
     <h1>Memoリスト</h1>
-     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
     <div class="container">
         <div class=row>
             <div class="col-12">
@@ -43,37 +43,37 @@
 
             <div class="col-12 memotable">
                 <!--<table class="table table-bordered table table-hover table-sm">
-                                    <caption>List of memos</caption>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">タイトル</th>
-                                            <th scope="col">内容</th>
-                                            <th scope="col">削除</th>
-                                        </tr>
-                                    </thead> -->
-                @foreach ($memos as $memo)
-
-                        <!--<tbody>
+                                        <caption>List of memos</caption>
+                                        <thead>
                                             <tr>
-                                                <th scope="row" class=""><a class="text-dark"
-                                                        href="{{ route('memos.show', ['memo' => $memo]) }}">{{ $memo->title }}</a></th>
-                                                <th>{{ $memo->body }}</th>
-                                                <th>
-                                                    <div class='btn-toolbar' role="toolbar">
-                                                        <a class="" href="{{ route('memos.edit', ['memo' => $memo]) }}">
-                                                            <i class="fas fa-pen mr-1"></i>
-                                                        </a>
-                                                        <form method="POST" action="{{ route('memos.destroy', ['memo' => $memo]) }}">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit">
-                                                                <i class="fas fa-trash-alt"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </th>
+                                                <th scope="col">タイトル</th>
+                                                <th scope="col">内容</th>
+                                                <th scope="col">削除</th>
                                             </tr>
-                                        </tbody> -->
+                                        </thead> -->
+                @foreach ($memos as $memo)
+                    @if (Auth::user()->can('view', $memo))
+                        <!--<tbody>
+                                                <tr>
+                                                    <th scope="row" class=""><a class="text-dark"
+                                                            href="{{ route('memos.show', ['memo' => $memo]) }}">{{ $memo->title }}</a></th>
+                                                    <th>{{ $memo->body }}</th>
+                                                    <th>
+                                                        <div class='btn-toolbar' role="toolbar">
+                                                            <a class="" href="{{ route('memos.edit', ['memo' => $memo]) }}">
+                                                                <i class="fas fa-pen mr-1"></i>
+                                                            </a>
+                                                            <form method="POST" action="{{ route('memos.destroy', ['memo' => $memo]) }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </tbody> -->
                         <div class="card">
                             <div class="card-header">
                                 memo内容
@@ -92,8 +92,8 @@
                                     @if ($loop->last)
                                     @endif
                                 @endforeach
+                                <a href="{{ route('memos.show', ['memo' => $memo]) }}" class="card-link">詳細</a>
                             </div>
-                            <a href="{{ route('memos.show', ['memo' => $memo]) }}" class="card-link">詳細</a>
                             <div class="dropdown">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
@@ -111,14 +111,15 @@
                             </div>
                             </a>
                         </div>
-         
-                @endforeach
             </div>
+            @endif
+            @endforeach
         </div>
-        <!--</table>-->
-        {{ $memos->links() }}
     </div>
-    <!-- モーダル -->
+    <!--</table>-->
+    {{ $memos->links() }}
+    </div>
+    <!-- モーダル
     <div id="modal-delete-{{ $memo->id }}" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -141,7 +142,7 @@
             </div>
         </div>
     </div>
-    <!-- モーダル -->
+    モーダル -->
     </div>
     </div>
 @endsection
