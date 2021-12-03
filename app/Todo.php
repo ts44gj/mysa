@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Todo extends Model
 {
- protected $fillable = [
+    protected $fillable = [
         'todo',
         'deadline',
     ];
 
-       public function user(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');
     }

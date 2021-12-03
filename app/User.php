@@ -2,15 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Notifications\PasswordResetNotification;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
-
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -43,20 +37,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    Public function todo(): HasMany
-  {
-    return $this->hasMany('App\Todo');
-  }
-  Public function buy(): HasMany
-  {
-    return $this->hasMany('App\Buy');
-  }
-  Public function memo(): HasMany
-  {
-    return $this->hasMany('App\Memo');
-  }
-  Public function morning(): HasMany
-  {
-    return $this->hasMany('App\Morning');
-  }
+    public function todo(): HasMany
+    {
+        return $this->hasMany('App\Todo');
+    }
+    public function buy(): HasMany
+    {
+        return $this->hasMany('App\Buy');
+    }
+    public function memo(): HasMany
+    {
+        return $this->hasMany('App\Memo');
+    }
+    public function morning(): HasMany
+    {
+        return $this->hasMany('App\Morning');
+    }
 }

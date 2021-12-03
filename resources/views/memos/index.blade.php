@@ -52,7 +52,7 @@
                                         </tr>
                                     </thead> -->
                 @foreach ($memos as $memo)
-                    @if (Auth::user()->can('view', $memo))
+
                         <!--<tbody>
                                             <tr>
                                                 <th scope="row" class=""><a class="text-dark"
@@ -111,7 +111,7 @@
                             </div>
                             </a>
                         </div>
-                    @endif
+         
                 @endforeach
             </div>
         </div>
