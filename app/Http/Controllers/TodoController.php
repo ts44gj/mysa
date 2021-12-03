@@ -13,12 +13,13 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Todo $todos)
+    public function index(Request $request,Todo $todos)
     {
+        $todos = $request->user()->todos;
         //$todos = Todo::orderByRaw('`deadline` IS NULL ASC')->orderBy('deadline')->get();
         $todos = Todo::orderBy('deadline', 'desc')->paginate(10);
 
-        return view('todos.index', ['todos' => $todos]);
+        return view('todos.index', ['todos' => $todos])->with(compact('todos'));
 
     }
 
