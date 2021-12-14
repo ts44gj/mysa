@@ -50,8 +50,8 @@
                     <caption>List of mornings</caption>
                     <thead>
                         <tr>
-                            <th scope="col">todo</th>
-                            <th scope="col">期限</th>
+                            <th scope="col">時間</th>
+                            <th scope="col">日</th>
                         </tr>
                     </thead>
                     @foreach ($mornings as $morning)
