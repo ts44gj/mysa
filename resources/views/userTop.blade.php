@@ -52,6 +52,7 @@
                         </div>
                         <div class="card-body table-responsive">
                             <table class="table table-hover">
+                                <caption>List of buys</caption>
                                 <div class="card">
                                     <tbody>
                                         @auth
@@ -64,6 +65,70 @@
                                                             </div>
                                                             <div class="card-body p-1">
                                                                 <span class="card-title">{{ $buy->day }}</span>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
+                                        @endauth
+                                    </tbody>
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header card-header-warning">
+                            <h4 class="card-title">Morningist</h4>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table class="table table-hover">
+                                <caption>List of mornings</caption>
+                                <div class="card">
+                                    <tbody>
+                                        @auth
+                                            @foreach ($mornings as $morning)
+                                                @if (Auth::user()->can('view', $morning))
+                                                    <tr>
+                                                        <th>
+                                                            <div class="card-body p-1">
+                                                                <span class="card-title">{{ $morning->time }}</span>
+                                                            </div>
+                                                            <div class="card-body p-1">
+                                                                <span class="card-title">{{ $morning->day }}</span>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
+                                        @endauth
+                                    </tbody>
+                                </div>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header card-header-warning">
+                            <h4 class="card-title">memolist</h4>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table class="table table-hover">
+                                <caption>List of memos</caption>
+                                <div class="card">
+                                    <tbody>
+                                        @auth
+                                            @foreach ($memos as $memo)
+                                                @if (Auth::user()->can('view', $memo))
+                                                    <tr>
+                                                        <th>
+                                                            <div class="card-body p-1">
+                                                                <span class="card-title">{{ $memo->title }}</span>
+                                                            </div>
+                                                            <div class="card-body p-1">
+                                                                <span class="card-title">{{ $memo->body }}</span>
                                                             </div>
                                                         </th>
                                                     </tr>
