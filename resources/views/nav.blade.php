@@ -11,6 +11,7 @@
                 @guest
                     <li class="nav-item active"><a class="nav-link" href="{{ route('register') }}">ユーザー登録</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ログイン</a></li>
+                     <a class="navbar-brand" href="{{ route('login.guest') }}">ゲスト</a>
                 @endguest
                 @auth
                     <li class="nav-item "><a class="nav-link" href="{{ route('todos.index') }}">todo</a></li>

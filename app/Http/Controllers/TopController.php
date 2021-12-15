@@ -14,10 +14,10 @@ class TopController extends Controller
 {
      public function index(Todo $todos, Buy $buys, Morning $mornings, Memo $memos)
     {
-        $todos = Todo::orderBy('deadline', 'desc')->get();
-        $buys = Buy::all();
-        $mornings = Morning::all();
-        $memos = Memo::all();
+        $todos = Todo::orderBy('deadline', 'desc')->paginate(5);
+        $buys = Buy::orderby('created_at', 'desc')->paginate(5);
+        $mornings = Morning::orderby('created_at', 'desc')->paginate(5);
+        $memos = Memo::orderby('created_at', 'desc')->paginate(5);
 
 
        return view('userTop',['todos'=>$todos,'buys'=>$buys,'mornings'=>$mornings,'memos'=>$memos]);

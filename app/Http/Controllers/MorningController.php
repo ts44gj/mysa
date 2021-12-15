@@ -17,7 +17,7 @@ class MorningController extends Controller
     public function index(Morning $morning,User $user)
     {
         $user = User::find($user->id);
-        $morning = Morning::paginate(10);
+        $morning = Morning::orderby('created_at', 'desc')->paginate(10);
 
         return view('mornings.index', ['mornings' => $morning,]);
     }

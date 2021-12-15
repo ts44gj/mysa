@@ -18,7 +18,7 @@ class BuyController extends Controller
      */
     public function index()
     {
-        $buys = Buy::paginate(10);
+        $buys = Buy::orderby('created_at', 'desc')->paginate(10);
 
         return view('buys.index', ['buys' => $buys]);
 
