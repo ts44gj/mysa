@@ -18,7 +18,7 @@ class MemoController extends Controller
     public function index(Request $request)
     {
        $memos = $request->user()->memos;
-       $memos = Memo::paginate(10);
+       $memos = Memo::orderby('created_at', 'desc')->paginate(10);
 
 
         return view("memos.index",['memos'=>$memos])->with(compact('memos'));

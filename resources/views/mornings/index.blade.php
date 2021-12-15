@@ -77,6 +77,7 @@
                     @endforeach
                 </table>
             </div>
+              {{ $mornings->links() }}
         </div>
     </div>
 @endsection
